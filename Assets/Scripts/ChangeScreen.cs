@@ -10,4 +10,12 @@ public class ChangeScreen : MonoBehaviour
         SceneManager.LoadScene(sceneNumber);
     }
 
+    public void changePlanet()
+    {
+
+        TimeManager.currentPlanet = TimeManager.selectedPlanet;
+        
+        SceneManager.LoadScene(1);
+    }
+
 }
