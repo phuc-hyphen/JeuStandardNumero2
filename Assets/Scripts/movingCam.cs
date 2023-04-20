@@ -13,10 +13,6 @@ public class movingCam : MonoBehaviour
     private bool _isDragging;
 
     public float speed = 5f;
-    public float limit_right = 200f;
-    public float limit_left = -200f;
-    public float limit_up = 200f;
-    public float limit_down = -200f;
     // Update is called once per frame
     void Update()
     {
@@ -29,24 +25,7 @@ public class movingCam : MonoBehaviour
             }
         }
         transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
-        // var speed = 5f;
-        // if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < limit_right)
-        // {
-        //     transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-        // }
-        // if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > limit_left)
-        // {
-        //     transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-        // }
-        // if (Input.GetKey(KeyCode.UpArrow) && transform.position.y < limit_up)
-        // {
-        //     transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
-        // }
-        // if (Input.GetKey(KeyCode.DownArrow) && transform.position.y > limit_down)
-        // {
-        //     transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
-        // }
-
+       
     }
 
     private void Awake()

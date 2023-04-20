@@ -13,15 +13,17 @@ public class lineDrawer : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 1;
+
     }
-    public void SetUpLine(List<Vector3> points)
-    {
-        this.points = points;
-        lineRenderer.positionCount = points.Count;
-    }
+    // public void SetUpLine(List<Vector3> points)
+    // {
+    //     this.points = points;
+    //     lineRenderer.positionCount = points.Count;
+    // }
     // Update is called once per frame
     void Update()
     {
+        this.points = TimeManager.planetsPos;
         if (points.Count < 2)
         {
             return;
