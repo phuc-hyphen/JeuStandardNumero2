@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Linq;
 
 public class PlanetDisplay : MonoBehaviour
 {
@@ -17,10 +16,10 @@ public class PlanetDisplay : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         //set sprite to planet sprite
         spriteRenderer.sprite = planet.planet_sprite;
-        if (planet.planet_name == TimeManager.currentPlanet)
+        if (planet.planet_name == PlanetManager.currentPlanet)
         {
             Vector3 currentPlanetPos = gameObject.transform.position;
-            TimeManager.planets.Add(currentPlanetPos);
+            PlanetManager.traveledPlanets.Add(currentPlanetPos);
             gameObject.tag = "currentPlanet";
             pointer.SetActive(true);
         }
@@ -47,7 +46,8 @@ public class PlanetDisplay : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        TimeManager.selectedPlanet = planet.planet_name;
+        PlanetManager.selectedPlanet = planet.planet_name;
+        PlanetManager.selectedDistance = planet.distance;
         flightButton.SetActive(true);
     }
 }

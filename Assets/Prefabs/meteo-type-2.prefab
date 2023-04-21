@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3580299910402192722}
   - component: {fileID: 4632090908633108554}
   m_Layer: 0
-  m_Name: output-onlinejpgtools
+  m_Name: meteo-type-2
   m_TagString: Kraken
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,7 +9,7 @@ public class LineDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lineRenderer.SetUpLine(TimeManager.planets);
+        // lineRenderer.SetUpLine(TimeManager.planets);
     }
 
     // Update is called once per frame
