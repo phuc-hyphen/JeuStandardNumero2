@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:GroupBox name="ListInter" style="height: 500px; width: 342px; -unity-background-image-tint-color: rgb(190, 164, 164); background-color: rgb(130, 137, 154); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+        <ui:ListView focusable="true" name="sender-list" style="height: 484px; width: 332px;" />
+    </ui:GroupBox>
+    <ui:GroupBox name="ViewSMS" style="height: 500px; width: 342px; -unity-background-image-tint-color: rgb(190, 164, 164); background-color: rgb(154, 130, 130); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; position: absolute; left: 350px; top: 3px;">
+        <ui:ListView focusable="true" name="message-list" style="height: 484px; width: 332px; background-color: rgba(60, 60, 60, 0);" />
+    </ui:GroupBox>
+</ui:UXML>

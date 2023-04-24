@@ -1,0 +1,82 @@
+{
+  "messages": [
+    {
+      "numero": "1",
+      "radio": {
+        "info": "Debout les campeurs et ô les cœurs, n'oubliez pas vos bottes parce que ça caille aujourd'hui. Ça caille tous les jours par ici, on n'est pas a {this.planet} . \n On en est même loin et il faut s'attendre à quelques problèmes de circulation se soir avec ce comment déjà.. oui ce blizzard de carotte. \n Blizzard vous avez dit blizzard ? comme c'est étrange, hé bien voici les prévisions, \n la météo spatiale prévoit un super blizzard ça va trouer du vaisseau.\n Oui ça va défoncer mais il y a une autre raison pour laquelle cette journée est si particulièrement passionnante. \nOui et particulièrement froide. Oui particulièrement froide, mais une question majeure est sur toutes les lèvres.\n Lèvres gercées.\n Oui les lèvres gercées.\n Poils au nez. \nCroyez-vous que Phil verra son ombre à son réveil. \nLe Phil de {this.planet} . Oui, \nl’horreur heldrichienne, \nle démon du néant, \nle porteur de désastres, \n le fleuriste de la place du lapin rose !\n On nous annonce que phil vient de s'échapper\n il parti manger un bout de l’interspatial z.\n nous vous recommandons donc la sortie 69 ou 42 le temps que les forces d’intervention imperiale le stop.",
+        "penality": 3
+      },
+      "SMS": [
+        {
+          "text": [
+            "hey comment ça va ?",
+            "très bien et toi ?",
+            "et bien coincé sur l’autoroute par phil.",
+            "collins ?",
+            "non. Phil-",
+            "antrope !",
+            "Berrrtrand.\n Je voulais dire le phil-",
+            "harmonique.",
+            "non, laisse-moi finir s’il te plait \n.je voulais dire, \nl’horreur heldrichienne, \nle démon du néant, \nle porteur de désastres,\n le fleuriste de la place du lapin rose,\n le phil de -",																					
+            "attend tu peux répéter je crois bien que j’ai perdu le fil.",
+            "LE PHIL DE {this.planet}",
+            "Aaaaah ce phil la, il a encore filé ?",
+            "Yep",
+            "le filou ca arrive tout les ans et malgré ca il recommence.",
+            "C’est incroyable qu’il n’en tire pas de leçon.",
+            "mais ça marche ils ont même une filiale sur {another.planet} qui à lancer le même évènement mais avec une marmotte.",
+            "Au moins ils ont pris un animal inoffensif.",
+            "Pas avec sa taille.  Bon sur ce je te laisse je suis en double file."
+          ],
+          "Inter": "bertrand",
+          "Penality": 1
+        },
+        {
+          "text": [
+            "hey !",
+            "alors coincé dans les embouteillages ?",
+            "exactement ! c’était si prévisible que ca ?",
+            "oui c’est la au moins la 5 fois aujourd’hui.",
+            "ah………\n bon bha bonne journé du -",
+            "oui, c’est aussi la 5em fois.",
+            "ah………. Je suis au alentour de {this.planet}",
+            "je sais...",
+            " mais je viens d'arriver. comment pourrait tu savoir.",
+            "Je te déconseille aussi d’aller à {another.planet}. Des mariachis traverse le temps et l’espace pour rembourser leur dettes au près d’une entitées supérieur démoniaque.",
+            "c’est bon monsieur a fini d’étaler son savoir\n Mois aussi je peux avoir un camembert complet au trivial pursuit.",
+            "vraiment ? qui a gagner l’ig nobel de cinétique de 2021 ",
+            "biiip, Hisashi Murakami, Claudio Feliciani, Yuta Nishiyama et Katsuhiro Nishinari, pour avoir mené des expériences pour comprendre pourquoi les piétons entrent parfois en collision avec d'autres piétons.",
+            "c’est une bonne réponse ! \n vous gagnez donc ce splendide halogène vintage au couleur de strasky et hutch !",
+            "Merci ! Je tien à remercier mon frère pour m’avoir fais perdre une enfance heureuse\n ma mère pour la donation de cet halogène.\n au grenier depuis maintenant 35 ans! \n et mon pere pour son abscence non remarquer puisqu'il étais abscent.\n Sans vous ma devise ne serait pas « inutile donc indispensable ».",
+            "en parlant de faire perdre si tu pouvais arrêter de me faire perdre mon temps j’apprécierais\n sur cela bonne chance."
+          ],
+          "Inter": "fréro",
+          "Penality": 1.5
+        },
+        {
+          "text": [
+            "bonjour, j’aurais besoin d’information.",
+            "bonjour, c’est parfait, vous êtes donc au mauvais endroit.",
+            "ah mince je ne vais donc pas vous déranger plus longtemps.",
+            "mais non au contraire déranger est dans notre ADN.",
+            "c’est ce que je suis en train de réaliser.",
+            "Ravis de voir que nous pouvons remplir notre rôle."
+          ],
+          "Inter": "Centre De Désinformation",
+          "Penality": 1
+        },
+        {
+          "text": [
+            "salut alors comment ça se passe là-bas.",
+            "sauve moi, elle est ne s’arrête pas.",
+            "J’arrive aussi vite que possible mais disons que tout ne se passe pas comme prévu.",
+            "Non je n’ai pas encore fini de nettoyer les fenêtres. \n Mais il y en a 30 et tu me l’a demander il y a 10  minutes. \n Non pitié pas ca . \n Oui Je raccroche tout de suite. \n Prend la rocade est si tu passes par {other.planet} c’est plus court.",
+            "Merci je suppose que je vais devoir te laisser."
+          ],
+          "Inter": "le cousin",
+          "Penality": 0.7
+        }
+      ]
+    }
+  ]
+}																															
