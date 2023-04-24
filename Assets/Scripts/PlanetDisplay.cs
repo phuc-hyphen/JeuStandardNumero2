@@ -33,7 +33,7 @@ public class PlanetDisplay : MonoBehaviour
         string info = "Mass: " + planet.mass + " Mj" +
             "\r\nRadius: " + planet.radius + " Jupiter" +
             "\r\nPeriod: " + planet.period + " years" +
-            "\r\nDistance: " + planet.distance + " LY";
+            "\r\nDistance: " + planet.distance + "TU";
         display_name.text = planet.planet_name;
         display_infos.text = info;
 

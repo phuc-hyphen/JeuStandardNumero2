@@ -12,5 +12,7 @@ public class Planet : ScriptableObject
     public Sprite planet_sprite;
     public List<string> events_journal = new List<string>();
     public List<string> events_radio = new List<string>();
+
+    public float penality = 1f;
 }
 

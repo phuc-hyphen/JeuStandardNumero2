@@ -13,10 +13,21 @@ public class ChangeScreen : MonoBehaviour
 
     public void changePlanet()
     {
-
         PlanetManager.currentPlanet = PlanetManager.selectedPlanet;
         TimeManager.timeLeft -= PlanetManager.selectedDistance * 3f;
-        SceneManager.LoadScene(1);
+        PlanetManager.selectedPlanet = "";
+        //random event
+        int randomEvent = Random.Range(0, 100);
+        if (randomEvent < 90)
+        {
+            //space invaders
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
+        
     }
     public void displayObjects()
     {

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox name="phone" style="width: 280px; height: 530px; background-color: rgb(204, 207, 224); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+        <ui:VisualElement style="height: 524px; width: 278px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+            <ui:ListView focusable="true" style="height: 521px; width: 279px;" />
+        </ui:VisualElement>
+    </ui:GroupBox>
+</ui:UXML>
