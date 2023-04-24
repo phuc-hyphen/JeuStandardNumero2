@@ -17,7 +17,7 @@ public class lineDrawer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        points = PlanetManager.traveledPlanets;
+        points = PlanetManager.traveledPlanetsPos;
         if (points.Count< 2)
             return;
         else

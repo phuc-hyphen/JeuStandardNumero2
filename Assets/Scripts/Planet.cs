@@ -10,8 +10,7 @@ public class Planet : ScriptableObject
     public float period;
     public float distance;
     public Sprite planet_sprite;
-
     public List<string> events_journal = new List<string>();
     public List<string> events_radio = new List<string>();
-
 }
+

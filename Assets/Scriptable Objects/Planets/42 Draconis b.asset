@@ -18,3 +18,5 @@ MonoBehaviour:
   period: 479.1
   distance: 296.36
   planet_sprite: {fileID: 21300000, guid: 9c36c5cd75ed3e04da7144bd01430bf2, type: 3}
+  events_journal: []
+  events_radio: []

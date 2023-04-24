@@ -789,7 +789,7 @@ MonoBehaviour:
   display_name: {fileID: 880580311}
   display_infos: {fileID: 1176094491}
   pointer: {fileID: 1533531592}
-  flightButton: {fileID: 0}
+  flightButton: {fileID: 347961355}
   planet: {fileID: 11400000, guid: 572aeb05607c0ddf7a13956b15a58d27, type: 2}
 --- !u!212 &151256370
 SpriteRenderer:
@@ -1654,7 +1654,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -513.0801, y: 218.71002}
+  m_AnchoredPosition: {x: -513.08014, y: 218.71002}
   m_SizeDelta: {x: -1031.73, y: -489.4317}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347961357
@@ -2387,7 +2387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.155}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 423.56992, y: 201.671}
+  m_AnchoredPosition: {x: -420, y: -207}
   m_SizeDelta: {x: -849.0216, y: -408.1537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571092940
@@ -5679,7 +5679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -513.5, y: 259.5}
+  m_AnchoredPosition: {x: -513.50006, y: 259.5}
   m_SizeDelta: {x: -1030.8926, y: -517.98926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1502469071

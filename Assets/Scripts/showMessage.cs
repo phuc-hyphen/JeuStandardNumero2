@@ -8,18 +8,9 @@ public class showMessage : MonoBehaviour
     public TextMeshProUGUI text;
     public void ShowMessage()
     {
-        text.text = messages[Random.Range(0, messages.Count)];
+        foreach (string mess in messages)
+        {
+            text.text += mess + "\n";
+        }
     }
-    
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
 }

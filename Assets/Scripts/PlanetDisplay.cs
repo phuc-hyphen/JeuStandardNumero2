@@ -19,14 +19,12 @@ public class PlanetDisplay : MonoBehaviour
         if (planet.planet_name == PlanetManager.currentPlanet)
         {
             Vector3 currentPlanetPos = gameObject.transform.position;
-            PlanetManager.traveledPlanets.Add(currentPlanetPos);
+            PlanetManager.traveledPlanetsPos.Add(currentPlanetPos);
             gameObject.tag = "currentPlanet";
-            pointer.SetActive(true);
         }
         else
         {
             gameObject.tag = "planet";
-            pointer.SetActive(false);
         }
     }
     private void OnMouseOver()
@@ -44,10 +42,30 @@ public class PlanetDisplay : MonoBehaviour
     {
         spriteRenderer.color = Color.white;
     }
+    void Update()
+    {
+        if (planet.planet_name == PlanetManager.selectedPlanet)
+        {
+            pointer.GetComponent<SpriteRenderer>().color = Color.blue;
+            pointer.SetActive(true);
+        }
+        else if (planet.planet_name == PlanetManager.currentPlanet)
+        {
+            pointer.GetComponent<SpriteRenderer>().color = Color.red;
+            pointer.SetActive(true);
+        }
+        else
+        {
+            pointer.SetActive(false);
+        }
+    }
     private void OnMouseDown()
     {
-        PlanetManager.selectedPlanet = planet.planet_name;
-        PlanetManager.selectedDistance = planet.distance;
-        flightButton.SetActive(true);
+        if (!PlanetManager.traveledPlanetsPos.Contains(gameObject.transform.position))
+        {
+            PlanetManager.selectedPlanet = planet.planet_name;
+            PlanetManager.selectedDistance = planet.distance;
+            flightButton.SetActive(true);
+        }
     }
 }
