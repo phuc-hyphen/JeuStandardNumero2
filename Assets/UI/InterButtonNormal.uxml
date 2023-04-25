@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="height: 49px; width: 324px; position: absolute;">
-        <ui:GroupBox style="background-color: rgb(180, 173, 122); height: 37px; width: 320px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="sender" style="height: 24px; width: 263px; color: rgb(48, 36, 36); -unity-font-style: bold; white-space: normal; font-size: 20px; left: 10%;" />
+    <ui:VisualElement style="height: 36px; width: 321px; position: absolute; transform-origin: center; flex-basis: auto; flex-shrink: 1; flex-grow: 100;">
+        <ui:GroupBox style="background-color: rgb(180, 173, 122); height: 37px; width: 320px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; flex-grow: 100; transition-duration: 1s;">
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="sender" usage-hints="None" style="height: 24px; width: 263px; color: rgb(48, 36, 36); -unity-font-style: bold; white-space: normal; font-size: 20px; left: 10%; flex-grow: 100; flex-shrink: 0; flex-basis: auto;" />
         </ui:GroupBox>
     </ui:VisualElement>
 </ui:UXML>

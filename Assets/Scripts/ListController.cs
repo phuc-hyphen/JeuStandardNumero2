@@ -10,16 +10,14 @@ public class ListController
     // UI element references
     ListView SenderList;
     ListView MessageList;
-    SMSmessage selectedSender;
+    SMS selectedSender;
     public void InitializeSenderList(VisualElement root, VisualTreeAsset listElementTemplate, VisualTreeAsset listElementTemplate2)
     {
         EnumerateAllCharacters();
 
-        // Store a reference to the template for the list entries
         ListEntryTemplate = listElementTemplate;
         ListEntryTemplate2 = listElementTemplate2;
 
-        // Store a reference to the character list element
         SenderList = root.Q<ListView>("sender-list");
         MessageList = root.Q<ListView>("message-list");
 
@@ -29,14 +27,13 @@ public class ListController
         SenderList.onSelectionChange += OnSenderSelected;
     }
 
-    List<SMSmessage> AllSenders;
-    // List<string> AllMessages;
+    List<SMS> AllSenders;
     void EnumerateAllCharacters()
     {
-        AllSenders = new List<SMSmessage>();
-        // GameVariables.rootObject.messages[0].SMS;
-        // 
-        AllSenders.AddRange(Resources.LoadAll<SMSmessage>("SMSs"));
+        if (GameVariables.rootObject == null)
+            return;
+        else
+            AllSenders = GameVariables.rootObject.messages[0].SMS;
     }
     void FillSenderList()
     {
@@ -62,11 +59,12 @@ public class ListController
         // Set up bind function for a specific list entry
         SenderList.bindItem = (item, index) =>
         {
-            (item.userData as ListEntryController).SetSenderData(AllSenders[index]);
+            (item.userData as ListEntryController).SetSenderData(AllSenders[index].Inter);
+            // item.style.height = 45 * GameVariables.counterLine(AllSenders[index].Inter);
         };
 
         // Set a fixed item height
-        SenderList.fixedItemHeight = 45;
+        // SenderList.fixedItemHeight = 45;
 
         // Set the actual item's source list/array
         SenderList.itemsSource = AllSenders;
@@ -75,13 +73,17 @@ public class ListController
     void OnSenderSelected(IEnumerable<object> selectedItems)
     {
         // Get the currently selected item directly from the ListView
-        selectedSender = SenderList.selectedItem as SMSmessage;
+        selectedSender = SenderList.selectedItem as SMS;
 
         // Handle none-selection (Escape to deselect everything)
         if (selectedSender == null)
         {
             return;
         }
+        // MessageList.itemsSource = selectedSender.text;
+        // Debug.Log("count : " + selectedSender.text.Count);
+        // MessageList.Clear();
+        // MessageList.fixedItemHeight = 45;
         FillSMSList();
         // // Fill in character details
 
@@ -89,40 +91,36 @@ public class ListController
     void FillSMSList()
     {
         int counter = 0;
-        // Set up a make item function for a list entry
         MessageList.makeItem = () =>
         {
-
-            // Instantiate the UXML template for the entry
             var newListEntry = ListEntryTemplate2.Instantiate();
             counter++;
             if (counter % 2 == 0)
             {
                 newListEntry = ListEntryTemplate.Instantiate();
             }
-            // Instantiate a controller for the data
             var newListEntryLogic = new ListEntryController();
 
-            // Assign the controller script to the visual element
             newListEntry.userData = newListEntryLogic;
 
-            // Initialize the controller script
             newListEntryLogic.SetVisualElement(newListEntry);
 
-            // Return the root of the instantiated visual tree
             return newListEntry;
         };
 
         // Set up bind function for a specific list entry
         MessageList.bindItem = (item, index) =>
         {
-            (item.userData as ListEntryController).SetMessageData(selectedSender.messages[index]);
+            if (index < selectedSender.text.Count)
+                (item.userData as ListEntryController).SetMessageData(selectedSender.text[index]);
+            // item.style.height = 45 * GameVariables.counterLine(selectedSender.text[index]);
         };
 
         // Set a fixed item height
-        MessageList.fixedItemHeight = 45;
+        // MessageList.fixedItemHeight = 45;
 
         // Set the actual item's source list/array
-        MessageList.itemsSource = selectedSender.messages;
+        MessageList.itemsSource = selectedSender.text;
+
     }
 }

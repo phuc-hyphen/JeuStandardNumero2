@@ -18,7 +18,7 @@ public class ChangeScreen : MonoBehaviour
         PlanetManager.selectedPlanet = "";
         //random event
         int randomEvent = Random.Range(0, 100);
-        if (randomEvent < 90)
+        if (randomEvent < 10)
         {
             //space invaders
             SceneManager.LoadScene(2);
