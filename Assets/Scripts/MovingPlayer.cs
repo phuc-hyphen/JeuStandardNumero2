@@ -11,10 +11,10 @@ public class MovingPlayer : MonoBehaviour
     public GameObject intrustion;
     // Update is called once per frame
     public float speed;
-    private float timer = 180.0f;
+    private float timer = 30.0f;
     public void start()
     {
-        timer_display.text = "03:00";
+        timer_display.text = "00:30";
     }
     // Update is called once per frame
     void Update()
@@ -26,9 +26,10 @@ public class MovingPlayer : MonoBehaviour
         }
         else
         {
-            string minutes = Mathf.Floor(timer / 60).ToString("00");
-            string seconds = Mathf.Floor(timer % 60).ToString("00");
-            timer_display.text = minutes + ":" + seconds;
+            // string minutes = Mathf.Floor(timer / 60).ToString("00");
+            // string seconds = Mathf.Floor(timer % 60).ToString("00");
+            // timer_display.text = minutes + ":" + seconds;
+            timer_display.text = GameFunctions.displayTimeForm((int)timer);
         }
         if (timer < 120)
         {

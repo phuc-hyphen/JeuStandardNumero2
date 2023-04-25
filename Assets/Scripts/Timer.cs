@@ -10,7 +10,8 @@ public class Timer : MonoBehaviour
     {
         if (TimeManager.timeLeft > 0)
         {
-            timerText.text = "Time Left: " + Mathf.Round(TimeManager.timeLeft);
+            // timerText.text = "Time Left: " + Mathf.Round(TimeManager.timeLeft);
+            timerText.text = "Time Left: " + GameFunctions.displayTimeForm((int)TimeManager.timeLeft);
             TimeManager.timeLeft -= Time.deltaTime;
         }
         else

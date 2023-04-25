@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TimeManager
 {
-    public static float timeLeft = 3 * 24 * 60f;
-    public List<string> journals = new List<string>();
-    public List<string> radios = new List<string>();
+    public static float timeLeft = 3 * 24 * 60*60f;
 
 }
