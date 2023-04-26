@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Radio" style="height: 203px; background-color: rgb(144, 221, 239); align-items: center; justify-content: center;">
+        <ui:VisualElement name="Display" style="background-color: rgb(156, 162, 165); height: 116px; width: 586px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; -unity-slice-top: 20; align-items: center;">
+            <ui:VisualElement name="Screen" style="width: 555px; height: -51px;">
+                <ui:VisualElement name="Cursor" style="width: 2px; background-color: rgb(255, 16, 16); height: 114px; left: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:SliderInt picking-mode="Ignore" value="42" high-value="100" name="Slider" style="height: 8px; width: 582px; padding-top: 3%;" />
+    </ui:VisualElement>
+</ui:UXML>
