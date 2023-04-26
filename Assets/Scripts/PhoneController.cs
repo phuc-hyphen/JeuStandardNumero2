@@ -12,13 +12,9 @@ public class PhoneController : MonoBehaviour
 
     [SerializeField]
     VisualTreeAsset ListEntryTemplate2;
-    public string filePath;
     void OnEnable()
     {
-        string json = System.IO.File.ReadAllText(filePath);
-
-        // Deserialize the JSON into a WeaponData object
-        GameVariables.rootObject = JsonUtility.FromJson<RootObject>(json);
+       
 
         // The UXML is already instantiated by the UIDocument component
         var uiDocument = GetComponent<UIDocument>();

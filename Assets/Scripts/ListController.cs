@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -28,12 +29,36 @@ public class ListController
     }
 
     List<SMS> AllSenders;
+    Dictionary<string, List<string>> DictSenders = new Dictionary<string, List<string>>();
+
     void EnumerateAllCharacters()
     {
-        if (GameVariables.rootObject == null)
+        if (GameVariables.ListSMS == null)
             return;
         else
-            AllSenders = GameVariables.rootObject.messages[0].SMS;
+        {
+            foreach (SMS sms in GameVariables.ListSMS)
+            {
+                if (sms.Inter == null)
+                    return;
+                else
+                {
+                    if (DictSenders.ContainsKey(sms.Inter))
+                    {
+                        DictSenders[sms.Inter].AddRange(sms.text);
+                    }
+                    else
+                    {
+                        DictSenders.Add(sms.Inter, sms.text);
+                    }
+                }
+            }
+        }
+        AllSenders = GameVariables.rootObject.messages[GameVariables.currentRootObject].SMS;
+        List<string> keysList = new List<string>(DictSenders.Keys);
+        // Debug.Log(keysList[0]);
+        // Debug.Log(DictSenders.Keys.ToList()[0]);
+
     }
     void FillSenderList()
     {
@@ -41,7 +66,7 @@ public class ListController
         SenderList.makeItem = () =>
         {
             // Instantiate the UXML template for the entry
-            var newListEntry = ListEntryTemplate.Instantiate();
+            var newListEntry = ListEntryTemplate2.Instantiate();
 
             // Instantiate a controller for the data
             var newListEntryLogic = new ListEntryController();
@@ -59,12 +84,13 @@ public class ListController
         // Set up bind function for a specific list entry
         SenderList.bindItem = (item, index) =>
         {
+            // (item.userData as ListEntryController).SetSenderData(DictSenders.Keys.ToList()[index]);
             (item.userData as ListEntryController).SetSenderData(AllSenders[index].Inter);
-            // item.style.height = 45 * GameVariables.counterLine(AllSenders[index].Inter);
+            // item.style.height = 45 * GameFunctions.counterLine(AllSenders[index].Inter);
         };
 
         // Set a fixed item height
-        // SenderList.fixedItemHeight = 45;
+        SenderList.fixedItemHeight = 45;
 
         // Set the actual item's source list/array
         SenderList.itemsSource = AllSenders;
@@ -93,6 +119,7 @@ public class ListController
         int counter = 0;
         MessageList.makeItem = () =>
         {
+            Debug.Log("count : " + counter);
             var newListEntry = ListEntryTemplate2.Instantiate();
             counter++;
             if (counter % 2 == 0)
@@ -112,8 +139,10 @@ public class ListController
         MessageList.bindItem = (item, index) =>
         {
             if (index < selectedSender.text.Count)
+            {
                 (item.userData as ListEntryController).SetMessageData(selectedSender.text[index]);
-            // item.style.height = 45 * GameVariables.counterLine(selectedSender.text[index]);
+                item.style.height = 45 * GameFunctions.counterLine(selectedSender.text[index]);
+            }
         };
 
         // Set a fixed item height

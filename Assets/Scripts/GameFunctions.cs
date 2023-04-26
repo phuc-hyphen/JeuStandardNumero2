@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameFunctions
 {
     // Start is called before the first frame update
+    // count number of line in string with max 20 characters per line
     public static int counterLine(string str)
     {
-        return Mathf.CeilToInt(str.Length / 13f);
+
+        return Mathf.CeilToInt(str.Length / 20f);
     }
+
     public static string displayTimeForm(int time)
     {
         //display time in format dd:hh:mm:ss
@@ -37,6 +40,6 @@ public class GameFunctions
         // string minutes = Mathf.Floor(time / 60).ToString("00");
         string seconds = Mathf.Floor(time % 60).ToString("00");
         // return days + ":" + hours + ":" + minutes + ":" + seconds;
-        return timeString + ":" + seconds;
+        return timeString + seconds;
     }
 }

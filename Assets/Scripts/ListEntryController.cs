@@ -16,12 +16,14 @@ public class ListEntryController
     public void SetSenderData(string sender)
     {
         NameLabel.text = sender;
-        // groupBox.style.height = 45 * GameVariables.counterLine(sender);
+        // groupBox.style.height = 45 * GameFunctions.counterLine(sender);
     }
     public void SetMessageData(string sms)
     {
         NameLabel.text = sms;
-        // groupBox.style.height = 45 * GameVariables.counterLine(sms);
+        NameLabel.style.height = 40 * GameFunctions.counterLine(sms);
+        NameLabel.style.flexShrink = 10;
+        groupBox.style.height = 40 * GameFunctions.counterLine(sms);
     }
 
 }

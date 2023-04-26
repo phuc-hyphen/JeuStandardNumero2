@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class PlanetDisplay : MonoBehaviour
 {
@@ -16,16 +17,36 @@ public class PlanetDisplay : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         //set sprite to planet sprite
         spriteRenderer.sprite = planet.planet_sprite;
+        //set a message to the planet
+        if (GameVariables.currentRootObject < GameVariables.rootObject.messages.Count)
+        {
+            Debug.Log(planet.planet_name);
+            planet.message = GameVariables.rootObject.messages[GameVariables.currentRootObject];
+            GameVariables.currentRootObject++;
+        }
+
         if (planet.planet_name == PlanetManager.currentPlanet)
         {
             Vector3 currentPlanetPos = gameObject.transform.position;
             PlanetManager.traveledPlanetsPos.Add(currentPlanetPos);
             gameObject.tag = "currentPlanet";
+            // check if the planet has a message
+            if (planet.message.SMS != null)
+            {
+                if (planet.message.SMS.All(s => !GameVariables.ListSMS.Contains(s)))
+                    GameVariables.ListSMS.AddRange(planet.message.SMS);
+                // foreach (SMS sms in planet.message.SMS) {
+                //     foreach (string msg in sms.text)
+
+                // }
+            }
+                
         }
         else
         {
             gameObject.tag = "planet";
         }
+
     }
     private void OnMouseOver()
     {
