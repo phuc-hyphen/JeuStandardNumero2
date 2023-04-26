@@ -43,14 +43,15 @@ public class ListController
                     return;
                 else
                 {
-                    if (DictSenders.ContainsKey(sms.Inter))
-                    {
-                        DictSenders[sms.Inter].AddRange(sms.text);
-                    }
-                    else
-                    {
-                        DictSenders.Add(sms.Inter, sms.text);
-                    }
+                    
+                    // if (DictSenders.ContainsKey(sms.Inter))
+                    // {
+                    //     DictSenders[sms.Inter].AddRange(sms.text);
+                    // }
+                    // else
+                    // {
+                    //     DictSenders.Add(sms.Inter, sms.text);
+                    // }
                 }
             }
         }

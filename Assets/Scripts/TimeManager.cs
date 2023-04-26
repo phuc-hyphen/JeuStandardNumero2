@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class TimeManager
 {
-    public static float timeLeft = 3 * 24 * 60*60f;
+    public static float timeLeft = 3 * 24 * 60 * 60f;
 
 }

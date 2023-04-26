@@ -33,14 +33,16 @@ public class PlanetDisplay : MonoBehaviour
             // check if the planet has a message
             if (planet.message.SMS != null)
             {
+                foreach (SMS sms in planet.message.SMS)
+                    foreach (string msg in sms.text)
+                    {
+                        msg.Replace("{this.planet}", planet.planet_name);
+                    }
+
                 if (planet.message.SMS.All(s => !GameVariables.ListSMS.Contains(s)))
                     GameVariables.ListSMS.AddRange(planet.message.SMS);
-                // foreach (SMS sms in planet.message.SMS) {
-                //     foreach (string msg in sms.text)
-
-                // }
             }
-                
+
         }
         else
         {

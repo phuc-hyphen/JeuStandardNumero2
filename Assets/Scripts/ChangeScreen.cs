@@ -13,8 +13,9 @@ public class ChangeScreen : MonoBehaviour
 
     public void changePlanet()
     {
+        Debug.Log( PlanetManager.selectedDistance );
         PlanetManager.currentPlanet = PlanetManager.selectedPlanet;
-        TimeManager.timeLeft -= PlanetManager.selectedDistance * 3f;
+        TimeManager.timeLeft -= PlanetManager.selectedDistance * 1f *60f;
         PlanetManager.selectedPlanet = "";
         //random event
         int randomEvent = Random.Range(0, 100);
