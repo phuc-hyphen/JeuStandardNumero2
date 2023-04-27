@@ -11,8 +11,11 @@ public class GameVariables
 
     public static Radio CurrentRadio = new Radio();
 
-
     public static List<SMS> ListSMS = new List<SMS>();
-    
+
+    public static bool newMessage = false;
+
+    public static List<(string inter, Message msg)> InterMessage = new List<(string inter, Message msg)>();
+
     // public static Dictionary<string, List<string>> InterMessage = new Dictionary<string, List<string>>();
 }

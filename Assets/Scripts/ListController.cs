@@ -11,7 +11,9 @@ public class ListController
     // UI element references
     ListView SenderList;
     ListView MessageList;
-    SMS selectedSender;
+    string selectedSender;
+    List<string> AllSenders;
+    Dictionary<string, List<string>> DictSenders = new Dictionary<string, List<string>>();
     public void InitializeSenderList(VisualElement root, VisualTreeAsset listElementTemplate, VisualTreeAsset listElementTemplate2)
     {
         EnumerateAllCharacters();
@@ -21,15 +23,14 @@ public class ListController
 
         SenderList = root.Q<ListView>("sender-list");
         MessageList = root.Q<ListView>("message-list");
-
+        SenderList.Clear();
+        MessageList.Clear();
+        // FillSenderList();
         FillSenderList();
 
         // Register to get a callback when an item is selected
         SenderList.onSelectionChange += OnSenderSelected;
     }
-
-    List<SMS> AllSenders;
-    Dictionary<string, List<string>> DictSenders = new Dictionary<string, List<string>>();
 
     void EnumerateAllCharacters()
     {
@@ -39,27 +40,22 @@ public class ListController
         {
             foreach (SMS sms in GameVariables.ListSMS)
             {
-                if (sms.Inter == null)
-                    return;
-                else
+                if (sms.Inter != null)
                 {
-                    
-                    // if (DictSenders.ContainsKey(sms.Inter))
-                    // {
-                    //     DictSenders[sms.Inter].AddRange(sms.text);
-                    // }
-                    // else
-                    // {
-                    //     DictSenders.Add(sms.Inter, sms.text);
-                    // }
+                    if (DictSenders.ContainsKey(sms.Inter))
+                    {
+                        DictSenders[sms.Inter].AddRange(sms.text);
+                        Debug.Log(sms.Inter);
+                    }
+                    else
+                    {
+                        DictSenders.Add(sms.Inter, sms.text);
+                    }
+
                 }
             }
+            AllSenders = new List<string>(DictSenders.Keys);
         }
-        AllSenders = GameVariables.rootObject.messages[GameVariables.currentRootObject].SMS;
-        List<string> keysList = new List<string>(DictSenders.Keys);
-        // Debug.Log(keysList[0]);
-        // Debug.Log(DictSenders.Keys.ToList()[0]);
-
     }
     void FillSenderList()
     {
@@ -86,7 +82,7 @@ public class ListController
         SenderList.bindItem = (item, index) =>
         {
             // (item.userData as ListEntryController).SetSenderData(DictSenders.Keys.ToList()[index]);
-            (item.userData as ListEntryController).SetSenderData(AllSenders[index].Inter);
+            (item.userData as ListEntryController).SetSenderData(AllSenders[index]);
             // item.style.height = 45 * GameFunctions.counterLine(AllSenders[index].Inter);
         };
 
@@ -100,7 +96,7 @@ public class ListController
     void OnSenderSelected(IEnumerable<object> selectedItems)
     {
         // Get the currently selected item directly from the ListView
-        selectedSender = SenderList.selectedItem as SMS;
+        selectedSender = SenderList.selectedItem as string;
 
         // Handle none-selection (Escape to deselect everything)
         if (selectedSender == null)
@@ -111,6 +107,7 @@ public class ListController
         // Debug.Log("count : " + selectedSender.text.Count);
         // MessageList.Clear();
         // MessageList.fixedItemHeight = 45;
+
         FillSMSList();
         // // Fill in character details
 
@@ -139,10 +136,10 @@ public class ListController
         // Set up bind function for a specific list entry
         MessageList.bindItem = (item, index) =>
         {
-            if (index < selectedSender.text.Count)
+            if (index < DictSenders[selectedSender].Count)
             {
-                (item.userData as ListEntryController).SetMessageData(selectedSender.text[index]);
-                item.style.height = 45 * GameFunctions.counterLine(selectedSender.text[index]);
+                (item.userData as ListEntryController).SetMessageData(DictSenders[selectedSender][index]);
+                item.style.height = 45 * GameFunctions.counterLine(DictSenders[selectedSender][index]);
             }
         };
 
@@ -150,7 +147,7 @@ public class ListController
         // MessageList.fixedItemHeight = 45;
 
         // Set the actual item's source list/array
-        MessageList.itemsSource = selectedSender.text;
+        MessageList.itemsSource = DictSenders[selectedSender];
 
     }
 }
