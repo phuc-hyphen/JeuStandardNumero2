@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class PlanetDisplay : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class PlanetDisplay : MonoBehaviour
         //set sprite to planet sprite
         spriteRenderer.sprite = planet.planet_sprite;
         //set a message to the planet
+        onRemoteStart();
+    }
+
+    public void onRemoteStart()
+    {
         if (GameVariables.currentRootObject < GameVariables.rootObject.messages.Count)
         {
             planet.message = GameVariables.rootObject.messages[GameVariables.currentRootObject];
@@ -29,9 +35,12 @@ public class PlanetDisplay : MonoBehaviour
                     sms.text[i] = newstr;
                 }
             planet.message.radio.info = planet.message.radio.info.Replace("{this.planet}", planet.planet_name);
+            planet.message.radio.info = planet.message.radio.info.Replace("\n", " ");
 
+            GameVariables.PlanetMessage.Add((planet.planet_name, planet.message));
+            Debug.Log(planet.planet_name);
         }
-        GameVariables.currentRootObject++;
+        GameVariables.currentRootObject = GameVariables.currentRootObject % GameVariables.rootObject.messages.Count;
 
         if (planet.planet_name == PlanetManager.currentPlanet)
         {
@@ -39,12 +48,12 @@ public class PlanetDisplay : MonoBehaviour
             PlanetManager.traveledPlanetsPos.Add(currentPlanetPos);
             gameObject.tag = "currentPlanet";
             // check if the planet has a message
-            if (planet.message.SMS != null)
+            if (GameVariables.PlanetMessage.Any(x => x.planet == planet.planet_name))
             {
                 GameVariables.newMessage = true;
                 Debug.Log("planet has a message");
-                GameVariables.CurrentRadio = planet.message.radio;
-                var list = planet.message.SMS;
+                GameVariables.CurrentRadio = GameVariables.PlanetMessage.Find(x => x.planet == planet.planet_name).msg.radio;
+                var list = GameVariables.PlanetMessage.Find(x => x.planet == planet.planet_name).msg.SMS;
                 GameVariables.ListSMS.AddRange(list);
             }
             Debug.Log(GameVariables.ListSMS.Count);
@@ -53,8 +62,8 @@ public class PlanetDisplay : MonoBehaviour
         {
             gameObject.tag = "planet";
         }
-
     }
+
     private void OnMouseOver()
     {
         spriteRenderer.color = Color.yellow;

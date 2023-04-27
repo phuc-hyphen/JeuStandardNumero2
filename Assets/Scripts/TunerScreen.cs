@@ -52,24 +52,26 @@ public class TunerScreen : MonoBehaviour
     public List<AudioClip> musicList_2;
     public List<AudioClip> musicList_3;
     public List<AudioClip> musicList_4;
+    private string Planet = "";
 
     private Dictionary<int, List<AudioClip>> playlists = new Dictionary<int, List<AudioClip>>();
     private List<AudioClip> currPlayist;
     private int playlistId;
 
-    private string Planet = "C";
-
     private List<string> randomState = new List<string>();
 
     void OnEnable()
     {
-        if (playlists.Keys.Count == 0)
-        {
-            playlists.Add(1, musicList_1);
-            playlists.Add(2, musicList_2);
-            playlists.Add(3, musicList_3);
-            playlists.Add(4, musicList_4);
-        }
+        playlists.Clear();
+
+        playlists.Add(1, musicList_1);
+        playlists.Add(2, musicList_2);
+        playlists.Add(3, musicList_3);
+        playlists.Add(4, musicList_4);
+
+        Planet = PlanetManager.currentPlanet;
+
+        Debug.Log(Planet);
 
         tuner = GetComponent<UIDocument>();
         slider = tuner.rootVisualElement.Q<SliderInt>("Slider");
@@ -95,46 +97,46 @@ public class TunerScreen : MonoBehaviour
 
         if (slider.value < 25)
         {
-            if (randomState[0] == "music")
+            if (randomState[0] == "music" || (GameVariables.CurrentRadio.info == null))
             {
                 PlayChannel(1);
             }
             else
             {
-                PlayTS("hello");
+                PlayTS(GameVariables.CurrentRadio.info);
             }
         }
         else if (slider.value < 50)
         {
-            if (randomState[1] == "music")
+            if (randomState[1] == "music" || (GameVariables.CurrentRadio.info == null))
             {
                 PlayChannel(2);
             }
             else
             {
-                PlayTS("hello");
+                PlayTS(GameVariables.CurrentRadio.info);
             }
         }
         else if (slider.value < 75)
         {
-            if (randomState[2] == "music")
+            if (randomState[2] == "music" || (GameVariables.CurrentRadio.info == null))
             {
                 PlayChannel(3);
             }
             else
             {
-                PlayTS("hello");
+                PlayTS(GameVariables.CurrentRadio.info);
             }
         }
         else
         {
-            if (randomState[3] == "music")
+            if ((randomState[3] == "music") || (GameVariables.CurrentRadio.info == null))
             {
                 PlayChannel(4);
             }
             else
             {
-                PlayTS("hello");
+                PlayTS(GameVariables.CurrentRadio.info);
             }
         }
     }
@@ -166,6 +168,7 @@ public class TunerScreen : MonoBehaviour
 
     void PlayTS(string text)
     {
+        Debug.Log(text);
         initSpeech();
         changeVoice(voiceIdx);
         MuteChannel();
@@ -242,9 +245,10 @@ public class TunerScreen : MonoBehaviour
             randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState2"));
             randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState3"));
             randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState4"));
-            currPlayist = playlists[int.Parse(System.Environment.GetEnvironmentVariable("currPlaylistId"))];
+            playlistId = int.Parse(System.Environment.GetEnvironmentVariable("currPlaylistId"));
+            Debug.Log(playlistId);
+            currPlayist = playlists[playlistId];
             Debug.Log("same:");
-            Debug.Log(int.Parse(System.Environment.GetEnvironmentVariable("currPlaylistId")));
         }
         foreach (string var in randomState)
         {

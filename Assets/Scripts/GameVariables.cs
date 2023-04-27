@@ -15,7 +15,7 @@ public class GameVariables
 
     public static bool newMessage = false;
 
-    public static List<(string inter, Message msg)> InterMessage = new List<(string inter, Message msg)>();
+    public static List<(string planet, Message msg)> PlanetMessage = new List<(string planet, Message msg)>();
 
     // public static Dictionary<string, List<string>> InterMessage = new Dictionary<string, List<string>>();
 }

@@ -215,7 +215,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -828,7 +828,6 @@ GameObject:
   - component: {fileID: 222866018}
   - component: {fileID: 222866017}
   - component: {fileID: 222866016}
-  - component: {fileID: 222866019}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -902,102 +901,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &222866019
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222866015}
-  m_Enabled: 0
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ad7682f05ff0f5b5b9908c1bd9a120c8, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &245013763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,11 +1941,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed29d1d72ab1a2548ade4ac112b99ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicList:
-  - {fileID: 8300000, guid: e0caa2cebb8c56943878068c43272c03, type: 3}
+  voiceIdx: 0
+  musicList_1:
   - {fileID: 8300000, guid: 78600c116317c0c49a60b68247ea3811, type: 3}
+  - {fileID: 8300000, guid: dd79af6255b3ed14ebea6d1adc6983e2, type: 3}
+  - {fileID: 8300000, guid: 966e1856f93dd094c9aec4e3135f12f0, type: 3}
+  - {fileID: 8300000, guid: cc644b8d5aa14f54a8ce33b50299b143, type: 3}
+  musicList_2:
+  - {fileID: 8300000, guid: 37b4cf987315a114889cc29cda31d104, type: 3}
+  - {fileID: 8300000, guid: 072ee95fe4b81c64682f015ede1e532f, type: 3}
+  - {fileID: 8300000, guid: 850b6ee66ad2d664fa8a21640e248b59, type: 3}
+  - {fileID: 8300000, guid: 9c057792921a7b24fb7999606f0777ac, type: 3}
+  musicList_3:
+  - {fileID: 8300000, guid: d323fea21f3602149ad3444f8dcf51a3, type: 3}
   - {fileID: 8300000, guid: 86634d8f8c1da98468acfd47b5811a61, type: 3}
-  infoList: []
+  - {fileID: 8300000, guid: 25376f99bc355504e98fb911459150f0, type: 3}
+  - {fileID: 8300000, guid: e0caa2cebb8c56943878068c43272c03, type: 3}
+  musicList_4:
+  - {fileID: 8300000, guid: b0ce077f45795164c93d504f896499dc, type: 3}
+  - {fileID: 8300000, guid: 117edd49f381683418ddd324ea2c5046, type: 3}
+  - {fileID: 8300000, guid: b9781bdf3f70673488eca2c680db0a06, type: 3}
+  - {fileID: 8300000, guid: 0eba949cbcf575d4a95f19bbdd86cfad, type: 3}
 --- !u!1 &1470816494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,7 +2892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.0101318, y: -0.50024414}
+  m_AnchoredPosition: {x: -1.0100098, y: -0.50024414}
   m_SizeDelta: {x: 2, y: -1.0005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1991659834

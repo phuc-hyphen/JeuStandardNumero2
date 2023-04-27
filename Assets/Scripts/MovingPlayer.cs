@@ -11,10 +11,10 @@ public class MovingPlayer : MonoBehaviour
     public GameObject intrustion;
     // Update is called once per frame
     public float speed;
-    private float timer = 30.0f;
+    private float timer = 10.0f;
     public void start()
     {
-        timer_display.text = "00:30";
+        timer_display.text = "00:10";
     }
     // Update is called once per frame
     void Update()
@@ -22,7 +22,7 @@ public class MovingPlayer : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         else
         {
@@ -53,7 +53,7 @@ public class MovingPlayer : MonoBehaviour
         {
             print("you lose");
             // Destroy(gameObject);
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
     }
 }
