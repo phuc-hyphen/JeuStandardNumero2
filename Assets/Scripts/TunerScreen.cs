@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Random = System.Random;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Text;
@@ -16,8 +18,6 @@ public class TunerScreen : MonoBehaviour
 
     [DllImport("WindowsTTS")]
     public static extern void addToSpeechQueue(byte[] s);
-    //[DllImport("WindowsVoice", CharSet=CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-    //public static extern void addToSpeechQueue([MarshalAs(UnmanagedType.LPStr)] string s);
 
     [DllImport("WindowsTTS")]
     public static extern void clearSpeechQueue();
@@ -46,20 +46,42 @@ public class TunerScreen : MonoBehaviour
     private VisualElement screen;
     private float screenWidth;
 
+    private Random rand = new Random();
     private GameObject music;
-    public List<AudioClip> musicList;
-    public List<AudioClip> infoList;
+    public List<AudioClip> musicList_1;
+    public List<AudioClip> musicList_2;
+    public List<AudioClip> musicList_3;
+    public List<AudioClip> musicList_4;
+
+    private Dictionary<int, List<AudioClip>> playlists = new Dictionary<int, List<AudioClip>>();
+
+    private string Planet = "B";
+
+    private List<string> randomState = new List<string>();
 
     void OnEnable()
     {
+        if (playlists.Keys.Count == 0)
+        {
+            playlists.Add(1, musicList_1);
+            playlists.Add(2, musicList_2);
+            playlists.Add(3, musicList_3);
+            playlists.Add(4, musicList_4);
+        }
+
         tuner = GetComponent<UIDocument>();
         slider = tuner.rootVisualElement.Q<SliderInt>("Slider");
         cursor = tuner.rootVisualElement.Q<VisualElement>("Cursor");
         screen = tuner.rootVisualElement.Q<VisualElement>("Screen");
 
-        slider.SetValueWithoutNotify(int.Parse(System.Environment.GetEnvironmentVariable("sliderValueEnv")));
+        if (System.Environment.GetEnvironmentVariable("sliderValueEnv") != null)
+        {
+            slider.SetValueWithoutNotify(int.Parse(System.Environment.GetEnvironmentVariable("sliderValueEnv")));
+        }
 
         music = GameObject.Find("Audio");
+
+        ChangePlanete();
     }
 
     void Update()
@@ -71,30 +93,61 @@ public class TunerScreen : MonoBehaviour
 
         if (slider.value < 25)
         {
-            PlayChannel(1, "music");
+            if (randomState[0] == "music")
+            {
+                PlayChannel(1);
+            }
+            else
+            {
+                PlayTS("hello");
+            }
         }
         else if (slider.value < 50)
         {
-            PlayChannel(2, "music");
+            if (randomState[1] == "music")
+            {
+                PlayChannel(2);
+            }
+            else
+            {
+                PlayTS("hello");
+            }
         }
         else if (slider.value < 75)
         {
-            PlayChannel(3, "music");
-        } else {
-            PlayTS("hello");
+            if (randomState[2] == "music")
+            {
+                PlayChannel(3);
+            }
+            else
+            {
+                PlayTS("hello");
+            }
+        }
+        else
+        {
+            if (randomState[3] == "music")
+            {
+                PlayChannel(4);
+            }
+            else
+            {
+                PlayTS("hello");
+            }
         }
     }
 
-    void PlayChannel(int id, string type)
+    void PlayChannel(int id)
     {
         var channelIdOn = GameObject.Find("channel_" + id.ToString());
         AudioSource channelOn = channelIdOn.GetComponent<AudioSource>();
         if (!channelOn.isPlaying)
         {
-            TunerScreen.destroySpeech();
+            destroySpeech();
             MuteChannel();
-            channelOn.clip = musicList[id - 1];
-            channelOn.time = Random.Range(0, musicList[id - 1].length);
+            var currPlayist = playlists[1];
+            channelOn.clip = currPlayist[id - 1];
+            channelOn.time = UnityEngine.Random.Range(0, currPlayist[id - 1].length);
             channelOn.loop = true;
             channelOn.Play();
         }
@@ -102,7 +155,7 @@ public class TunerScreen : MonoBehaviour
 
     void MuteChannel()
     {
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i <= 4; i++)
         {
             var channelIdOff = GameObject.Find("channel_" + i.ToString());
             AudioSource channelOff = channelIdOff.GetComponent<AudioSource>();
@@ -115,37 +168,82 @@ public class TunerScreen : MonoBehaviour
         initSpeech();
         changeVoice(voiceIdx);
         MuteChannel();
-        TunerScreen.speak(text, true);
+        Speak(text, true);
     }
 
     void OnDisable()
     {
         System.Environment.SetEnvironmentVariable("sliderValueEnv", string.Format("{0}", slider.value));
+        System.Environment.SetEnvironmentVariable("currPlanet", Planet);
+        System.Environment.SetEnvironmentVariable("currRandomState1", randomState[0]);
+        System.Environment.SetEnvironmentVariable("currRandomState2", randomState[1]);
+        System.Environment.SetEnvironmentVariable("currRandomState3", randomState[2]);
+        System.Environment.SetEnvironmentVariable("currRandomState4", randomState[3]);
     }
 
     void OnDestroy()
     {
-        if (theVoice == this)
-        {
-            Debug.Log("Destroying speech");
-            destroySpeech();
-            theVoice = null;
-        }
     }
 
-    public static void speak(string msg, bool interruptable = false)
+    void Speak(string msg, bool interruptable = false)
     {
         Encoding encoding = System.Text.Encoding.GetEncoding(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ANSICodePage);
         var data = encoding.GetBytes(msg);
         if (interruptable)
             clearSpeechQueue();
         addToSpeechQueue(data);
-        //addToSpeechQueue(msg);
     }
 
-
-    private void OnApplicationQuit()
+    void ChangePlanete()
     {
-        TunerScreen.destroySpeech();
+        if (Planet != (System.Environment.GetEnvironmentVariable("currPlanet")))
+        {
+
+            List<int> seen = new List<int>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                int index;
+                
+                do
+                {
+                    index = rand.Next(1, 5);
+                } while (seen.Contains(index));
+
+                seen.Add(index);
+
+                switch (index)
+                {
+                    case 1:
+                        randomState.Add("music");
+                        break;
+                    case 2:
+                        randomState.Add("music");
+                        break;
+                    case 3:
+                        randomState.Add("music");
+                        break;
+                    case 4:
+                        randomState.Add("text");
+                        break;
+                }
+
+            }
+        } else
+        {
+            randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState1"));
+            randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState2"));
+            randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState3"));
+            randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState4"));
+        }
+        foreach (string var in randomState)
+        {
+            Debug.Log(var);
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        destroySpeech();
     }
 }
