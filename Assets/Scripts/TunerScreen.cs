@@ -54,8 +54,10 @@ public class TunerScreen : MonoBehaviour
     public List<AudioClip> musicList_4;
 
     private Dictionary<int, List<AudioClip>> playlists = new Dictionary<int, List<AudioClip>>();
+    private List<AudioClip> currPlayist;
+    private int playlistId;
 
-    private string Planet = "B";
+    private string Planet = "C";
 
     private List<string> randomState = new List<string>();
 
@@ -145,7 +147,6 @@ public class TunerScreen : MonoBehaviour
         {
             destroySpeech();
             MuteChannel();
-            var currPlayist = playlists[1];
             channelOn.clip = currPlayist[id - 1];
             channelOn.time = UnityEngine.Random.Range(0, currPlayist[id - 1].length);
             channelOn.loop = true;
@@ -179,6 +180,7 @@ public class TunerScreen : MonoBehaviour
         System.Environment.SetEnvironmentVariable("currRandomState2", randomState[1]);
         System.Environment.SetEnvironmentVariable("currRandomState3", randomState[2]);
         System.Environment.SetEnvironmentVariable("currRandomState4", randomState[3]);
+        System.Environment.SetEnvironmentVariable("currPlaylistId", string.Format("{0}", playlistId));
     }
 
     void OnDestroy()
@@ -229,12 +231,20 @@ public class TunerScreen : MonoBehaviour
                 }
 
             }
-        } else
+            playlistId = rand.Next(1, 5);
+            currPlayist = playlists[playlistId];
+            Debug.Log("diff:");
+            Debug.Log(playlistId);
+        }
+        else
         {
             randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState1"));
             randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState2"));
             randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState3"));
             randomState.Add(System.Environment.GetEnvironmentVariable("currRandomState4"));
+            currPlayist = playlists[int.Parse(System.Environment.GetEnvironmentVariable("currPlaylistId"))];
+            Debug.Log("same:");
+            Debug.Log(int.Parse(System.Environment.GetEnvironmentVariable("currPlaylistId")));
         }
         foreach (string var in randomState)
         {
