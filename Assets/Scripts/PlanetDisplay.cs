@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Linq;
 
 public class PlanetDisplay : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public class PlanetDisplay : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     void Start()
     {
+        DontDestroyOnLoad(this);
         //use sprite rendrer in object 
         spriteRenderer = GetComponent<SpriteRenderer>();
         //set sprite to planet sprite
@@ -20,10 +20,18 @@ public class PlanetDisplay : MonoBehaviour
         //set a message to the planet
         if (GameVariables.currentRootObject < GameVariables.rootObject.messages.Count)
         {
-            Debug.Log(planet.planet_name);
             planet.message = GameVariables.rootObject.messages[GameVariables.currentRootObject];
-            GameVariables.currentRootObject++;
+
+            foreach (SMS sms in planet.message.SMS)
+                for (int i = 0; i < sms.text.Count; i++)
+                {
+                    string newstr = sms.text[i].Replace("{this.planet}", planet.planet_name);
+                    sms.text[i] = newstr;
+                }
+            planet.message.radio.info = planet.message.radio.info.Replace("{this.planet}", planet.planet_name);
+
         }
+        GameVariables.currentRootObject++;
 
         if (planet.planet_name == PlanetManager.currentPlanet)
         {
@@ -33,16 +41,13 @@ public class PlanetDisplay : MonoBehaviour
             // check if the planet has a message
             if (planet.message.SMS != null)
             {
-                foreach (SMS sms in planet.message.SMS)
-                    foreach (string msg in sms.text)
-                    {
-                        msg.Replace("{this.planet}", planet.planet_name);
-                    }
-
-                if (planet.message.SMS.All(s => !GameVariables.ListSMS.Contains(s)))
-                    GameVariables.ListSMS.AddRange(planet.message.SMS);
+                GameVariables.newMessage = true;
+                Debug.Log("planet has a message");
+                GameVariables.CurrentRadio = planet.message.radio;
+                var list = planet.message.SMS;
+                GameVariables.ListSMS.AddRange(list);
             }
-
+            Debug.Log(GameVariables.ListSMS.Count);
         }
         else
         {
@@ -56,7 +61,7 @@ public class PlanetDisplay : MonoBehaviour
         string info = "Mass: " + planet.mass + " Mj" +
             "\r\nRadius: " + planet.radius + " Jupiter" +
             "\r\nPeriod: " + planet.period + " years" +
-            "\r\nDistance: " + planet.distance + "TU";
+            "\r\nDistance: " + planet.distance + "TiU";
         display_name.text = planet.planet_name;
         display_infos.text = info;
 
